@@ -1,0 +1,10 @@
+{% extends "django_heroku_webpage/base.html" %}
+{% block content %}
+    <h1><a href="{% url 'django_heroku_webpage:topic' topic.id %}">{{ topic }}</a></h1>
+    <h2>Edit entry:</h2>
+    <form action="{% url 'django_heroku_webpage:new_entry' topic.id %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Save changes</button>
+    </form>
+{% endblock content %}

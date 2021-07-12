@@ -1,0 +1,10 @@
+{% extends "django_heroku_webpage/base.html" %}
+{% block content %}
+    <h1>Register</h1>
+    <form action="{% url 'users:register' %}" method='post'>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="submit">Register</button>
+        <input type="hidden" name="next" value="{% url 'django_heroku_webpage:index' %}" />
+    </form>
+{% endblock content %}

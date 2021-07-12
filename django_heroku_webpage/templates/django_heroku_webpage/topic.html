@@ -1,0 +1,21 @@
+{% extends "django_heroku_webpage/base.html" %}
+{% block content %}
+    <p> Topic: {{ topic }} </p>
+    <p> Entries: </p>
+    <p>
+        <a href="{% url 'django_heroku_webpage:new_entry' topic.id %}">Add new entry</a>
+    </p>
+    <ul>
+        {% for entry in entries %}
+            <li>
+                <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
+                <p>{{ entry.text|linebreaks }}</p>
+                <p>
+                    <a href="{% url 'django_heroku_webpage:edit_entry' topic.id %}">Edit entry</a>
+                </p>
+            </li>
+        {% empty %}
+            <li>No entries for this topic have been added.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
