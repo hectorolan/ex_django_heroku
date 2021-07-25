@@ -1,14 +1,19 @@
 {% extends "django_heroku_webpage/base.html" %}
+{% block page-header %}
+    <h1> Topics </h1>
+{% endblock page-header %}
 {% block content %}
-    <p> Topics </p>
     <ul>
         {% for topic in topics %}
             <li>
-            <a href="{% url 'django_heroku_webpage:topic' topic.id %}">{{ topic }}</a>
+                <h3>
+                    <a href="{% url 'django_heroku_webpage:topic' topic.id %}">{{ topic }}</a>
+                </h3>
             </li>
         {% empty %}
-            <li>No topics have been added.</li>
+            <li>
+                <h3>No topics have been added.</h3>
+            </li>
         {% endfor %}
     </ul>
-    <a href="{% url 'django_heroku_webpage:new_topic' %}">Add a new topic</a>
 {% endblock content %}

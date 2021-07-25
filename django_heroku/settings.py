@@ -35,6 +35,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django_heroku_webpage',
     'users',
+    'bootstrap4',
 
     'django.contrib.admin',
     'django.contrib.auth',

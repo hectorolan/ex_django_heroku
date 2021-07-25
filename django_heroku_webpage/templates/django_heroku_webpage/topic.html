@@ -1,21 +1,23 @@
 {% extends "django_heroku_webpage/base.html" %}
+{% block page-header %}
+    <h1> Topic: {{ topic }} </h1>
+{% endblock page-header %}
 {% block content %}
-    <p> Topic: {{ topic }} </p>
-    <p> Entries: </p>
     <p>
         <a href="{% url 'django_heroku_webpage:new_entry' topic.id %}">Add new entry</a>
     </p>
-    <ul>
-        {% for entry in entries %}
-            <li>
-                <p>{{ entry.date_added|date:'M d, Y H:i' }}</p>
-                <p>{{ entry.text|linebreaks }}</p>
-                <p>
-                    <a href="{% url 'django_heroku_webpage:edit_entry' topic.id %}">Edit entry</a>
-                </p>
-            </li>
-        {% empty %}
-            <li>No entries for this topic have been added.</li>
-        {% endfor %}
-    </ul>
+
+    {% for entry in entries %}
+        <div class="card mb-3">
+            <h4 class="card-header">
+                {{ entry.date_added|date:'M d, Y H:i' }}
+                <small><a href="{% url 'django_heroku_webpage:edit_entry' topic.id %}">Edit entry</a></small>
+            </h4>
+            <div class="card-body">
+                {{ entry.text|linebreaks }}
+            </div>
+        </div>
+    {% empty %}
+        <p>No entries for this topic have been added.</p>
+    {% endfor %}
 {% endblock content %}
